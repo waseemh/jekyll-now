@@ -21,7 +21,7 @@ The events mechanism in WebDriver is composed of two major objects:
     EventFiringWebDriver - A wrapper of the normal WebDriver API but adds the support of event triggering.
     WebDriverEventListener - An interface with pre-defined events that EventFiringWebDriver instance will trigger.
 
-![Diagram of objects relation](/assets/eventdriver.png)
+![Diagram of objects relation](/images/eventdriver.png)
 
 Following the observer pattern, each EventFiringWebDriver instance holds a list of WebDriverEventListener objects. Whenever an event is triggered by WebDriver, all registered listeners will be notified of this event and each listener may react differently to each event.
 
