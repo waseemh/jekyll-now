@@ -4,12 +4,11 @@ title: About
 permalink: /about/
 ---
 
-Some information about you!
+A software engineer specialized in the area of test automation and tools.
 
-### More Information
+### Open Source
 
-A place to include any other types of information that you'd like to include about yourself.
+I contribute a lot to the open source community. Some of my projects:
 
-### Contact me
-
-[email@domain.com](mailto:email@domain.com)
+ - selenium-mesos: A Mesos framework for launching Selenium instances at scale using Docker containers. 
+ - lxc-java: Java API for LXC (Linux Containers)
