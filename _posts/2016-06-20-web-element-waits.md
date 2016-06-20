@@ -3,7 +3,9 @@ layout: post
 title: "WebElement Waits"
 ---
 
-In this short tutorial I'm going to show how we can extend Selenium WebDriver explicit wait mechanism to support WebElement waits. Selenium Webdriver 2.0 API comes with a set of utilities for applying different wait conditions when locating DOM elements or when waiting for an event to happen in DOM.
+In this short tutorial I'm going to show how we can extend Selenium WebDriver explicit wait mechanism to apply wait conditions on WebElement instances. 
+
+Selenium Webdriver 2.0 API comes with a set of utilities for applying different wait conditions when locating DOM elements or when waiting for an event to happen in DOM.
 
 WebDriver API provides WebDriverWait and ExpectedCondition classes for applying busy-wait-polling machnism when locating elements via WebDriver object. The polling behavior can be customized via different parameters such as wait timeout, interval between polls and which exceptions to ignore during polling. It also provides ExpectedConditions helper class which includes many ready-made ExpectedCondition implementations commonly used in WebDriver tests. 
 
