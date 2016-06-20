@@ -1,14 +1,13 @@
 ---
 layout: post
 title: "WebElement Waits"
-comments: true
 ---
 
-Selenium Webdriver 2.0 API comes with a set of utility classes for applying different wait conditions when locating DOM elements or when waiting for an event to happen in DOM.
+In this short tutorial I'm going to show how we can extend Selenium WebDriver explicit wait mechanism to support WebElement waits. Selenium Webdriver 2.0 API comes with a set of utilities for applying different wait conditions when locating DOM elements or when waiting for an event to happen in DOM.
 
-API provides WebDriverWait and ExpectedCondition classes with a built-in busy-wait-polling machnism, which can be customized via different parameters such as wait timeout, interval between polls and ignored exceptions. It also provides ExpectedConditions helper class which includes many ready-made wait conditions used commonly in WebDriver tests. 
+WebDriver API provides WebDriverWait and ExpectedCondition classes for applying busy-wait-polling machnism when locating elements via WebDriver object. The polling behavior can be customized via different parameters such as wait timeout, interval between polls and which exceptions to ignore during polling. It also provides ExpectedConditions helper class which includes many ready-made ExpectedCondition implementations commonly used in WebDriver tests. 
 
-However, I had a scenario where I wanted to apply an expected condition on a WebElement instance, not on a WebDriver instance. Since WebElement is also a sub interface of SearchContext, it seemed abvious that API will support WebElement waits. But sadly, current implementation doesn't provide such support.
+However, I had a scenario where I wanted to apply an ExpectedCondition on a WebElement instance, not on a WebDriver instance. Since WebElement is also a sub interface of SearchContext, it seemed abvious that API will support WebElement waits. But sadly, current implementation doesn't provide such support.
 
 Since WebDriverWait is based on a generic wait object FluentWait, implementing a WebElementWait should be straight forward.
 
