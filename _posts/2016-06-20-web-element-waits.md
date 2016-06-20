@@ -5,7 +5,9 @@ comments: true
 ---
 
 Selenium Webdriver 2.0 API comes with a set of utility classes for applying different wait conditions when locating DOM elements or when waiting for an event to happen in DOM.
-API provides WebDriverWait and ExpectedCondition classes with a built-in busy-wait-polling machnism, which can be customized via different parameters such as wait timeout, interval between polls and ignored exceptions. It also provides ExpectedConditions helper class which includes many ready-made wait conditions used commonly in WebDriver tests. For example:
+
+API provides WebDriverWait and ExpectedCondition classes with a built-in busy-wait-polling machnism, which can be customized via different parameters such as wait timeout, interval between polls and ignored exceptions. It also provides ExpectedConditions helper class which includes many ready-made wait conditions used commonly in WebDriver tests. 
+
 However, I had a scenario where I wanted to apply an expected condition on a WebElement instance, not on a WebDriver instance. Since WebElement is also a sub interface of SearchContext, it seemed abvious that API will support WebElement waits. But sadly, current implementation doesn't provide such support.
 
 Since WebDriverWait is based on a generic wait object FluentWait, implementing a WebElementWait should be straight forward.
