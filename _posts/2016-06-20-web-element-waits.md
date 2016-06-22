@@ -36,25 +36,27 @@ First, we define a new interface for ExpectedCondition of WebElement type
 public interface WebElementExpectedCondition<T> extends Function<WebElement, T> {}
 {% endhighlight %}
 
-Finally, we can implement our desired ExpectedConditions based on new interface. For example:
+Finally, we can implement our desired ExpectedCondition-s based on new interface. For example:
 
 {% highlight java %}
 /**
- * An expectation for checking that an element is present on the DOM of a
- * page. This does not necessarily mean that the element is visible.
+ * An expectation for checking that an element is present on the DOM of a page
+ * and visible. Visibility means that the element is not only displayed but
+ * also has a height and width that is greater than 0.
  *
  * @param locator used to find the element
- * @return the WebElement once it is located
+ * @return the WebElement once it is located and visible
  */
-public static WebElementExpectedCondition<WebElement> presenceOfElementLocated(final By locator) {
-    
+
+public static WebElementExpectedCondition<WebElement> visibilityOfElementLocated(
+        final By locator) {
+
     return new WebElementExpectedCondition<WebElement>() {
-        
         @Override
         public WebElement apply(WebElement element) {
             try {
                 WebElement innerElement = element.findElement(locator);
-                return innerElement;
+                return innerElement.isDisplayed() ? innerElement : null;
             } catch (StaleElementReferenceException e) {
                 return null;
             }
@@ -62,8 +64,23 @@ public static WebElementExpectedCondition<WebElement> presenceOfElementLocated(f
 
         @Override
         public String toString() {
-            return "presence of element located by: " + locator;
+            return "visibility of element located by " + locator;
         }
     };
 }
 {% endhighlight %}
+
+Combining all pieces together, we can apply the wait condition on a WebElement object:
+
+{% highlight java %}
+
+public List<WebElement> getTableRows(WebElement table) {
+
+    WebElementWait wait = new WebElementWait(table, 30);
+    wait.ignoring(NoSuchElementException.class);
+    element = wait.until(WebElementExpectedConditions.visibilityOfElementLocated(rowsXpath));
+    
+}
+{% endhighlight %}
+
+For full source code and othere examples, you can refer to selenium-toolbox repository on Github.
