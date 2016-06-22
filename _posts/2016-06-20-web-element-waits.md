@@ -3,17 +3,19 @@ layout: post
 title: "WebElement Waits"
 ---
 
-In this short tutorial we will extend Selenium WebDriver API to apply wait conditions on WebElement objects. 
+In this short tutorial we will extend Selenium WebDriver API to apply wait conditions on [WebElement](http://google.com) objects. 
 
 Selenium Webdriver 2.0 library comes with a set of utilities for applying different wait conditions when locating DOM elements or when waiting for an event to happen in DOM.
 
-We generally use WebDriverWait and ExpectedCondition objects for applying busy-wait-polling machnism when locating elements via WebDriver object. The polling behavior can be customized via different parameters such as wait timeout, interval between polls and which exceptions to ignore during polling. It also provides ExpectedConditions - a helper static class which includes many ready-made ExpectedCondition implementations commonly used in WebDriver tests. 
+We generally use [WebDriverWait](http://google.com) and [ExpectedCondition](http://google.com) objects for applying busy-wait-polling machnism when locating elements via WebDriver object. The polling behavior can be customized via different parameters such as wait timeout, interval between polls and which exceptions to ignore during polling. It also provides [ExpectedConditions](http://google.com) - a helper static class which includes many ready-made ExpectedCondition implementations commonly used in WebDriver tests. 
 
-However, I had several scenarios where I wanted to apply an ExpectedCondition on a WebElement object, not on a WebDriver object. Since WebElement is also a sub interface of SearchContext, it seemed abvious that API will support WebElement waits. But current implementation doesn't provide such support.
+However, I had several scenarios where I wanted to apply an ExpectedCondition on a WebElement object, not on a WebDriver object. For example, finding nested elements of a WebElement object such as table rows. Such elements might be loaded dynamicaly, thus using table.findElements(rowsXpath) won't be reliable enough.
 
-Since WebDriverWait is based on a generic wait object FluentWait, implementing a WebElementWait should be straight forward.
+WebElement interface extends [SearchContext](http://google.com) interface, so it seemed abvious that library will support WebElement waits. But current implementation doesn't provide such support.
 
-WebElementWait subclasses FluentWait<T> and defines WebElement class as its input type:
+Since WebDriverWait is based on a generic type object [FluentWait](http://google.com), implementing our WebElementWait should be straight forward.
+
+WebElementWait will subclass FluentWait<T> and will define WebElement class as its input type:
 
 {% highlight java %}
 public class WebElementWait extends FluentWait<WebElement> {
